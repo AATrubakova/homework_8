@@ -21,8 +21,8 @@ public class Application extends JFrame {
 
         setTitle("First Application");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(300,300,200,200);
-        setLayout(new GridLayout(1,3));
+        setBounds(300, 300, 200, 200);
+        setLayout(new GridLayout(1, 3));
 
         JButton buttonHandleThis = new JButton("-");
         buttonHandleThis.addActionListener(new ActionListener() {
@@ -74,31 +74,32 @@ public class Application extends JFrame {
 
         setVisible(true);
     }
+
     public static void main(String[] args) throws IOException {
         new Application();
-        }
-
-        public static void handlePdf(String path1, String path2) throws IOException {
-            File directory = new File(path1);
-            File[] pdfFiles = directory.listFiles();
-
-            File file2 = new File(path2);
-
-            for (File file1: pdfFiles) {
-                PDDocument document1 = Loader.loadPDF(file1);
-                PDDocument document2 = Loader.loadPDF(file2);
-
-                PDPageTree pages = document2.getPages();
-
-                for (PDPage page: pages) {
-                    document1.addPage(page);
-                }
-                System.out.println("Pdf loaded");
-
-                document1.save(file1.getAbsolutePath());
-                document1.close();
-                document2.close();
-            }
-
-        }
     }
+
+    public static void handlePdf(String path1, String path2) throws IOException {
+        File directory = new File(path1);
+        File[] pdfFiles = directory.listFiles();
+
+        File file2 = new File(path2);
+
+        for (File file1 : pdfFiles) {
+            PDDocument document1 = Loader.loadPDF(file1);
+            PDDocument document2 = Loader.loadPDF(file2);
+
+            PDPageTree pages = document2.getPages();
+
+            for (PDPage page : pages) {
+                document1.addPage(page);
+            }
+            System.out.println("Pdf loaded");
+
+            document1.save(file1.getAbsolutePath());
+            document1.close();
+            document2.close();
+        }
+
+    }
+}
